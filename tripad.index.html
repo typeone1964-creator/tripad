@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="ja"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;旅先診断コンシェルジュ&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* --- CSS スタイル --- */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--primary-color: #007bff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--bg-color: #f4f7f6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--card-bg: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>--text-color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--bg-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--text-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--card-bg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 25px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>h1, h2 {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #2c3e50;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>p {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.6;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 入力フォーム */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group label {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.input-group input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #ddd;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box; /* パディングを含める */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* ボタン */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0056b3;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-option {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #eef2f3;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-option:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #dbe2e5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 画面切り替え制御 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.hidden {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* プログレスバー */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0e0e0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress-bar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 0%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: width 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 結果画面 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.result-type {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: var(--primary-color);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 20px 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.recommendation {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f9f9f9;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container" id="app-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="screen-intro"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1&gt;旅先診断コンシェルジュ&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;あなたにぴったりの旅先を提案します。&lt;br&gt;まずは条件を教えてください。&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label&gt;今回の日数は？（例：2泊3日）&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="input-days" placeholder="2泊3日"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="input-group"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;label&gt;1人あたりの予算は？（例：5万円）&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;input type="text" id="input-budget" placeholder="50000"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" onclick="startQuiz()"&gt;診断を始める&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="screen-quiz" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="progress-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="progress-bar" id="progress-bar"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 id="question-text"&gt;質問テキスト&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="options-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="screen-result" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2&gt;診断結果&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;あなたの旅のタイプは…&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="result-type" id="result-title"&gt;タイプ名&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p id="result-desc"&gt;タイプの説明&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="recommendation"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3&gt;おすすめの旅先プラン&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p id="result-plan"&gt;プラン詳細&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p style="font-size: 0.9em; color: #666; margin-top: 10px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>条件: &lt;span id="display-days"&gt;&lt;/span&gt; / 予算: &lt;span id="display-budget"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button class="btn" onclick="location.reload()"&gt;もう一度診断する&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* --- JavaScript ロジック --- */</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 状態管理</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentQuestionIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let userDays = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let userBudget = "";</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// スコア（タイプ別加点）</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// type1: 知的 (Intellectual)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// type2: 自然 (Nature)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// type3: ラグジュアリー (Luxury)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// type4: トレンド (Trend)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// type5: 放浪 (Wanderer)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let scores = { type1: 0, type2: 0, type3: 0, type4: 0, type5: 0 };</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 10の質問データ</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 各回答がどのタイプに加点されるか定義 (points: 'typeX')</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const questions = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q1. 旅の朝、あなたはどんな風に目覚めたい？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 鳥のさえずりと朝日（自然）", type: "type2" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 街の喧騒や市場の音（都会）", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. ルームサービスのノック（優雅）", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 目覚ましはかけない（自由）", type: "type5" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q2. 知らない路地に迷い込んでしまいました。どう思う？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 隠れ家カフェがあるかも！（探求）", type: "type1" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. すぐに地図アプリで確認（計画）", type: "type3" }, // 安全志向はLux/Trend寄りとする</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 地元の人に道を尋ねる（交流）", type: "type5" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 景色を写真に撮る（感性）", type: "type4" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q3. 旅先での「食事」で一番重視することは？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 有名店やミシュラン（権威）", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 地元の怪しい食堂（冒険）", type: "type5" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 景色や内装がおしゃれ（映え）", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 質より量と種類！（体験）", type: "type2" } // エネルギッシュ</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q4. 旅先に一冊だけ本を持っていくなら？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. その土地の歴史小説", type: "type1" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 笑えるエッセイ", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 哲学書やビジネス書", type: "type3" }, // 内省的</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. ガイドブックのみ", type: "type2" } // 行動派</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q5. 旅の相棒（靴）を選んでください。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 履き慣れたスニーカー", type: "type1" }, // 歩き回って見る</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 映えるサンダルやブーツ", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. ホテルのスリッパ", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. トレッキングシューズ", type: "type2" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q6. 夜になりました。今の気分は？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 地元のバーで乾杯", type: "type5" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 静かな星空を見上げる", type: "type2" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. マッサージを受けて寝る", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 夜景を撮りに行く", type: "type4" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q7. カバンの中の「余白」は？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 空っぽ。現地調達！", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 常備薬などでパンパン", type: "type1" }, // 慎重・準備</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 行きも帰りもミニマル", type: "type3" }, // スマート</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. お土産スペースのみ", type: "type5" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q8. タイムマシンがあったら？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 恐竜時代（大自然）", type: "type2" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 侍や騎士の時代（歴史）", type: "type1" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 未来都市（最先端）", type: "type4" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 自分の子供時代", type: "type5" } // ノスタルジー</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q9. 旅から帰ったときの理想の状態は？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 遊びきった筋肉痛", type: "type2" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 賢くなった気分", type: "type1" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 肌の調子がいい", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 明日への活力満タン", type: "type5" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>text: "Q10. あなたにとって「旅」とは？",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "A. 冒険 (Adventure)", type: "type2" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "B. 逃避 (Escape)", type: "type3" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "C. 発見 (Discovery)", type: "type1" },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "D. 交流 (Connection)", type: "type5" }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// タイプ別の結果データ</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const results = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type1: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "知的好奇心旺盛なタイムトラベラー",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc: "歴史、文化、建築などに興味があり、知ることに喜びを感じるタイプです。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>places: "京都・奈良の寺社巡り、金沢のアート旅、またはローマやエジプトなどの遺跡探訪"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type2: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "五感で感じるネイチャー・ビースト",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc: "とにかく自然の中で体を動かしたい、絶景を見たいアクティブなタイプです。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>places: "屋久島トレッキング、北海道・知床の大自然、ニュージーランドやスイスの絶景"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type3: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "何もしない贅沢・ラグジュアリーなナマケモノ",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc: "日常のストレスから離れ、極上の癒やしと快適さを求めるタイプです。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>places: "箱根・由布院の露天風呂付き客室、モルディブの水上ヴィラ、高級ホテルのスパ"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type4: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "映えとトレンドを追う都会のハンター",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc: "最新スポット、グルメ、ファッションを重視し、感性を刺激したいタイプです。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>places: "東京・表参道のカフェ巡り、韓国ソウルでのショッピング、NYやパリの街歩き"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type5: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "一期一会の放浪詩人（ポエット）",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>desc: "現地の人との交流や、行き当たりばったりのハプニングを楽しむ自由人タイプです。",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>places: "尾道の路地裏散策、タイ・バンコクの屋台街、ゲストハウスを巡る旅"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 診断開始</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function startQuiz() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const daysInput = document.getElementById('input-days').value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const budgetInput = document.getElementById('input-budget').value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(!daysInput || !budgetInput) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("日数と予算を入力してください");</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>userDays = daysInput;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>userBudget = budgetInput;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 画面切り替え</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('screen-intro').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('screen-quiz').classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>loadQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 質問の読み込み</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function loadQuestion() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const q = questions[currentQuestionIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('question-text').innerText = q.text;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('options-container');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = ""; // クリア</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>q.options.forEach(opt =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const btn = document.createElement('button');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.className = 'btn btn-option';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.innerText = opt.text;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>btn.onclick = () =&gt; selectOption(opt.type);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>container.appendChild(btn);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// プログレスバー更新</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const progress = ((currentQuestionIndex) / questions.length) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('progress-bar').style.width = progress + "%";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 選択肢クリック時の処理</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function selectOption(type) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scores[type]++; // スコア加算</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentQuestionIndex++;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentQuestionIndex &lt; questions.length) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>loadQuestion();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>showResult();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 結果表示</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function showResult() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('screen-quiz').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('screen-result').classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 最高得点のタイプを判定</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let maxType = "type1";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let maxScore = 0;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (const [key, value] of Object.entries(scores)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (value &gt; maxScore) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maxScore = value;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>maxType = key;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const resultData = results[maxType];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// テキストの埋め込み</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('result-title').innerText = resultData.title;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('result-desc').innerText = resultData.desc;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// おすすめプランの生成（入力データと組み合わせる）</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const planText = `今回は予算${userBudget}、${userDays}とのことですね。\n` +</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>`そんなあなたには、${resultData.places}がおすすめです！`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('result-plan').innerText = planText;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('display-days').innerText = userDays;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('display-budget').innerText = userBudget;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
